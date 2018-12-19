@@ -26,13 +26,13 @@ RUN apt-get update && \
     apt-get install -y git mercurial openjdk-8-jdk apt-transport-https ca-certificates && \
     \
     apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 9DC858229FC7DD38854AE2D88D81803C0EBFCD88 && \
-    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" > /etc/apt/sources.list.d/docker.list && \
     \
     apt-cache policy docker-ce && \
     apt-get update && \
-    apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu && \
+    apt-get install -y docker-ce=18.09.0~ce-0~ubuntu && \
     systemctl disable docker && \
-    curl -SL https://github.com/docker/compose/releases/download/1.22.0/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose \
+    curl -SL https://github.com/docker/compose/releases/download/1.23.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose \
 		&& chmod +x /usr/local/bin/docker-compose && \
     \
     apt-get install -y --no-install-recommends \
@@ -49,7 +49,7 @@ RUN apt-get update && \
             zlib1g \
         && rm -rf /var/lib/apt/lists/* && \
     \
-    curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.403/dotnet-sdk-2.1.403-linux-x64.tar.gz --output dotnet.tar.gz \
+    curl -SL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.502/dotnet-sdk-2.1.502-linux-x64.tar.gz --output dotnet.tar.gz \
         && mkdir -p /usr/share/dotnet \
         && tar -zxf dotnet.tar.gz -C /usr/share/dotnet \
         && rm dotnet.tar.gz \
@@ -62,7 +62,7 @@ RUN apt-get update && \
     \
     usermod -aG docker buildagent && \
     \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
     \
     apt-get install -y nodejs && \
     \
